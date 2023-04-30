@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Low Light Image Enhancement</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <header>
+        <h1>Low Light Image Enhancement</h1>
+    </header>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </nav>
+    <main>
+        <h2>Upload Your Image</h2>
+        <form action="{{ url_for('enhance') }}" method="POST" enctype="multipart/form-data">
+            <input type="file" id="input-image" name="myImage" accept="image/x-png,image/jpg,image/jpeg" />
+            <input type="submit" value="Enhance" name="action1"/>
+        </form>
+        {% if result %}
+        <div id="output">
+            <!-- {% if original_image is defined %} -->
+            <h3>Original Image</h3>
+            <img id="original-image" src="{{ url_for('static', filename='images/low_image.jpg') }}" width="400" height="400">
+
+            <!-- {% endif %} -->
+            <!-- {% if enhanced_image is defined %} -->
+            <h3>Enhanced Image</h3>
+            <img id="enhanced-image" src="{{ url_for('static', filename='images/gt_image.jpg') }}" width="400" height="400">
+            <br>
+            <button type="button" id="download-button">Download</button>
+            <!-- {% endif %} -->
+        </div>
+        {% endif %}
+    </main>
+    <!-- <footer>
+        Copyright 2021 Low Light Image Enhancement
+    </footer> -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
